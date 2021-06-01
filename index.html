@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+
+  <canvas></canvas>
+
+  <script>
+  
+    // A tool to determine the width in PX of each char of a given font.
+    // Because Node js is not able to render an SVG to see the width like you would within a browser
+    // This can be used to pre-calculate the width of text inside an SVG element.
+
+    var chars = [
+      "Q",
+      "W",
+      "E",
+      "R",
+      "T",
+      "Y",
+      "U",
+      "I",
+      "O",
+      "P",
+      "A",
+      "S",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "Z",
+      "X",
+      "C",
+      "V",
+      "B",
+      "N",
+      "M",
+      ".",
+      "q",
+      "w",
+      "e",
+      "r",
+      "t",
+      "y",
+      "u",
+      "i",
+      "o",
+      "p",
+      "a",
+      "s",
+      "d",
+      "f",
+      "g",
+      "h",
+      "j",
+      "k",
+      "l",
+      "z",
+      "x",
+      "c",
+      "v",
+      "b",
+      "n",
+      "m",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "0",
+      "@",
+    ];
+
+    console.log('generate font sizes:');
+
+    function renderText() {
+        let ctx = document.querySelector('canvas').getContext('2d');
+        ctx.font = '10px Barlow';
+        return ctx;
+    }
+
+    function getTextWidth(ctx, text) {
+      var metrics = ctx.measureText(text);
+      return metrics.width;    
+    }
+
+    document.fonts.load('10px Barlow').then(() => {
+    
+      const ctx = renderText();
+
+      let output = {};
+
+      chars.map(char => {
+        output[char] = getTextWidth(ctx, char, "10px", "Barlow");
+      });
+
+      console.log(output);
+      
+    });
+
+  </script>
+  
+</body>
+</html>
